@@ -1,20 +1,45 @@
-import { Modal } from "react-bootstrap";
-import PRODUCTS from "../../store/products";
+import { useContext } from "react";
+import {Button, Modal} from "react-bootstrap";
+import CartContext from "../../store/cart-context";
+import CartItem from "./CartItem";
+import css from "./CartItem.module.css"
 
 const Cart = (props) => {
+     const cartCtx=useContext(CartContext);
+     const hasItems=cartCtx.items.length>0;
+     const cartItemRemoveHandler=(id)=>{
+        cartCtx.removeItem(id);
+
+     };
+     const cartItems = cartCtx.items.map((itm) => (
+        <CartItem
+            key={itm.id}
+            title={itm.title}
+            price={itm.price}
+            onRemove={cartItemRemoveHandler.bind(null, itm.id)}
+        />
+    ));
+    const itemCartBody = <Modal.Body>{cartItems}</Modal.Body>;
+    const emptyCartBody = <Modal.Body className="text-center">Cart is empty.</Modal.Body>
+    const cartFooter = (
+        <div>
+            <div className="px-2">
+                <span>Total Amount: </span>
+                <span className={css.price}>Rs. {cartCtx.totalAmount}</span>
+            </div>
+            <Modal.Footer>
+                <Button variant="dark">PURCHASE</Button>
+            </Modal.Footer>
+        </div>
+    );
+
     return (
         <Modal show onHide={props.onHide} backdrop="static" keyboard={false}>
             <Modal.Header closeButton>
                 <Modal.Title>CART</Modal.Title>
             </Modal.Header>
-            <Modal.Body>
-                {PRODUCTS.map((itm) => (<li>{itm.title}</li>))}
-                <br />
-                <span>Total Amount: Rs. 0</span>
-            </Modal.Body>
-            <Modal.Footer>
-                <span className="float-start">BUY BUTTON</span>
-            </Modal.Footer>
+            {hasItems ? itemCartBody : emptyCartBody}
+            {hasItems && cartFooter}
         </Modal>
     );
 }

@@ -4,6 +4,8 @@ import Cart from './Components/Cart/Cart';
 import Footer from './Components/Layout/Footer';
 import Header from './Components/Layout/Header';
 import Store from './Components/Pages/Store';
+import CartProvider from './store/CartProvider';
+import Jumbotron from './Components/Layout/jumbotron';
 
   function App() {
     const [cartVisibility, setCartVisibility] = useState(false);
@@ -15,12 +17,13 @@ import Store from './Components/Pages/Store';
       setCartVisibility(false);
     };
     return(
-      <div>
+      <CartProvider>
       <Header onShow={showCartHandler}/>
+      <Jumbotron heading="The Generics"/>
       {cartVisibility && <Cart onHide={hideCartHandler} />}
       <Store />
       <Footer />
-    </div>
+    </CartProvider>
   );
 };
 
