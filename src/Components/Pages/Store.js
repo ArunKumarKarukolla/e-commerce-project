@@ -2,6 +2,7 @@ import { Fragment,useContext,useState } from "react";
 import Products from '../../store/products'
 import { Modal } from "react-bootstrap";
 import CartContext from "../../store/cart-context";
+import Jumbotron from "../Layout/jumbotron";
 
 const Store = (props) => {
     const cartCtx = useContext(CartContext);
@@ -41,6 +42,7 @@ const Store = (props) => {
 
     return (
         <Fragment>
+            <section><Jumbotron heading="The Generics" /></section>
             <h1 className="text-center m-2">Music</h1>
             <Modal show={itemExist} onHide={removeAlertHandler} centered><Modal.Body className="text-center">ITEM ALREADY ADDED TO CART</Modal.Body></Modal>
             <section className="d-flex justify-content-center">

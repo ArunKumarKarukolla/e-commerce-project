@@ -1,9 +1,11 @@
 import { Fragment } from "react";
 import './Home.css';
+import Jumbotron from "../Layout/jumbotron";
 
 const Home = (props) => {
     return (
         <Fragment>
+            <section><Jumbotron heading="The Generics" /></section>
             <h1 className="text-center m-2">Tours</h1>
             <div className="px-5">
                 <div className='show-box'>

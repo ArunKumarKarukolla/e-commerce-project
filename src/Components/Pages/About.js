@@ -1,8 +1,10 @@
 import { Fragment } from "react";
+import Jumbotron from'../Layout/jumbotron';
 
 const About = (props) => {
     return(
         <Fragment>
+            <section><Jumbotron heading="The Generics" /></section>
             <h1 className="text-center m-2">About Us</h1>
             <section className="d-flex justify-content-center mb-5"></section>
             <div className="card text-center border-0" style={{width:' 60rem'}}>
