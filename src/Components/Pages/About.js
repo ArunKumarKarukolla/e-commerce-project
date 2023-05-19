@@ -1,5 +1,5 @@
 import { Fragment } from "react";
-import Jumbotron from'../Layout/jumbotron';
+import Jumbotron from "../Layout/jumbotron";
 
 const About = (props) => {
     return(
